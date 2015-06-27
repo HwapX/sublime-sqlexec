@@ -1,0 +1,24 @@
+{
+    "sql_exec": {
+        "options": ["-column", "-nullvalue null"],
+        "before": [".headers on"],
+        "args": "\"{options.database}\"",
+        "queries": {
+            "desc" : {
+                "query": ".headers off\nSELECT '|' || name || '|' FROM sqlite_master WHERE type='table';",
+                "options": [],
+                "format" : "|%s|"
+            },
+            "desc table": {
+                "query": ".schema \"%s\"",
+                "options": ["-column"],
+                "format" : "%s"
+            },
+            "show records": {
+                "query": "select * from \"%s\" limit 100;",
+                "options": ["-column"],
+                "format" : "|%s|"
+            }
+        }
+    }
+}
